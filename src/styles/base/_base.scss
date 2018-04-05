@@ -1,0 +1,188 @@
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+*,
+*:focus,
+*:active {
+  outline: none;
+}
+
+html {
+  font-size: 16px;
+}
+
+body,
+html {
+  font-family: sans-serif;
+  cursor: default;
+  width: 100%;
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  background: transparent;
+  color: inherit;
+}
+
+.clearfix:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.wrapper {
+  position: relative;
+  color: $color_dark;
+  background-color: $color_white;
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+
+  &--index {
+    padding: 0;
+  }
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+.transparent__svg-bg {
+  width: 100%;
+  height: 100%;
+  fill: $color_white;
+  position: absolute;
+  fill-opacity: 0.1;
+  left: 0;
+
+  &--works {
+    fill: $color_green;
+    width: 200%;
+    height: 200%;
+    transform: translate(-20%, -40%);
+  }
+  &--blog {
+    fill: $color_white;
+    fill-opacity: 0.2;
+    width: 250%;
+    height: 250%;
+    transform: translate(-25%, -25%);
+  }
+  &--about {
+    fill: $color_green;
+    width: 200%;
+    transform: translate(-25%, -15%);
+
+    &_main {
+      fill: $color_green;
+      width: 150%;
+      height: 150%;
+      transform: translate(-12%, -35%);
+    }
+  }
+}
+.section {
+  @include section-prop;
+  position: relative;
+}
+.section__overlay {
+  position: absolute;
+  top: 0.5rem;
+  width: 100%;
+  transform: translateY(-100%);
+
+  &-left {
+    fill: $color_white;
+
+    &--about {
+      fill: $color_light_gray;
+    }
+  }
+  &-right {
+    fill: $color_white;
+    &--about {
+      fill: $color_dark_white;
+
+      @include tablets {
+        fill: $color_light_gray;
+      }
+      @include phones {
+        fill: $color_light_gray;
+      }      
+    }
+  }
+}
+
+.section__header {
+  position: relative;
+  @include font-sansus(63px, 400);
+
+  text-transform: uppercase;
+
+  padding-bottom: 8%;
+
+  &:after {
+    content: ' ';
+    position: absolute;
+    width: 27%;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-bottom: 3px solid $color_white;
+  }
+
+  &--color_black {
+    color: $color_gray;
+    padding-bottom: 1rem;
+
+    @include tablets {
+      font-size: rem(49px);
+    }
+    @include phones {
+      font-size: 35px;
+    }
+
+    &:after {
+      border-bottom: 3px solid $color_gray;
+    }
+  }
+}

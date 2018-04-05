@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700&subset=cyrillic');
+@import 'normalize.css';
+// Config
+@import "config/mixins";
+@import "config/variables";
+
+// Base
+@import 'base/fonts';
+@import 'base/base';
+
+// Layout
+@import 'layout/hero';
+@import 'layout/socials';
+@import 'layout/copyright';
+@import 'layout/user';
+@import 'layout/footer';
+@import 'layout/article';
+@import 'layout/menu';
+@import 'layout/reviews';
+@import 'layout/comments';
+
+// Components
+@import 'components/pages';
+@import 'components/slider';
+@import 'components/buttons';
+@import 'components/hamburger';
+@import 'components/form';
+@import 'components/skills';
+@import 'components/map';
+@import 'components/navigation';
+@import 'components/preloader';
+
+// Pages
+@import 'pages/index';
+@import 'pages/blog';
+@import 'pages/works';
+@import 'pages/about';
+@import "pages/admin";

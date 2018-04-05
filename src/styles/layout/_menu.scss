@@ -1,0 +1,28 @@
+.menu {
+  @include flex-prop;
+  justify-content: space-between;
+
+  @include wide {
+    justify-content: flex-start;
+  }
+  @include phones {
+    padding: 0 1rem;
+  }
+}
+.menu__item {
+  @include wide {
+    margin-right: 2.7rem;
+  }
+  @include tablets {
+    font-size: rem(14px);
+    margin-right: 0;
+  }
+  @include phones {
+    font-size: rem(14px);
+    font-weight: 500;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+}

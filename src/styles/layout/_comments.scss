@@ -1,0 +1,74 @@
+.comments {
+  @include flex-prop;
+  justify-content: center;
+  align-items: flex-start;
+
+  width: 67%;
+  margin: 0 auto;
+
+  @include tablets {
+    width: 100%;
+  }
+  @include phones {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  &__item {
+    padding: 0 0.8rem;
+    width: 50%;
+    @include font-roboto(16px, 400);
+    font-style: italic;
+
+    @include wide {
+      width: 33%;
+    }
+    @include phones {
+      width: 100%;
+      margin-top: 2rem;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    &-img {
+      border-radius: 50%;
+    }
+  }
+
+  &__text {
+    text-align: justify;
+    margin-top: 0.8rem;
+    line-height: 26px;
+
+    @include tablets {
+      font-size: rem(14px);
+    }
+    @include phones {
+      font-size: rem(14px);
+      text-align: left;      
+    }
+  }
+  &__info {
+    margin-top: 1.2rem;
+
+    @include tablets {
+      margin-top: 0.5rem;
+    }
+    @include phones {
+      margin-top: 0.5rem;
+      font-size: rem(14px);
+      text-align: center;
+    }
+
+    &-name {
+      @include font-roboto(16px, 700);
+      color: $color_green_hover;
+      margin-bottom: 0.4rem;
+      @include phones {
+        font-size: rem(14px);
+      }
+    }
+  }
+}

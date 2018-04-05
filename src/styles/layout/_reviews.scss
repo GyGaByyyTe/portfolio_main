@@ -1,0 +1,75 @@
+.reviews {
+  min-height: 1350px;
+  padding-bottom: 15%;
+  background-image: url('../images/backgrounds/back_reviews.png');
+  text-align: center;
+  overflow: hidden;
+  height: 100%;
+
+  @include wide {
+    padding-bottom: 0;
+  }
+  @include tablets {
+    padding-bottom: 0;
+    min-height: 1306px;
+  }
+  @include phones {
+    padding-bottom: 30rem;
+    min-height: 1306px;
+    background-position: 29%, 0;    
+  }  
+
+  &__header {
+    width: 30%;
+    margin-top: 3.3rem;
+    line-height: 5rem;
+    display: inline-block;
+    position: relative;
+
+    @include tablets {
+      width: 59%;
+      margin-top: 2.5rem;
+      line-height: 3.3rem;
+    }
+    @include phones {
+      width: 65%;
+      margin-top: 2.5rem;
+      line-height: 3.3rem;
+    }    
+  }
+
+  &__comments {
+    padding-top: 1.7rem;
+  }
+
+  &__contacts {
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @include tablets {
+      margin-top: 3rem;
+    }
+    @include phones {
+      margin: 3rem auto 0;
+      width: 95%;
+    }    
+  }
+  &__button {
+    margin-top: 4.5rem;
+    margin-bottom: 4.2rem;
+    @include tablets {
+      display: none;
+    }
+    @include phones {
+      display: none;
+    }    
+  }
+  &__button-svg {
+    opacity: 0.6;
+    fill: $color_white;
+    width: 26px;
+    height: 16px;
+  }
+}

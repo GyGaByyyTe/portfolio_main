@@ -1,0 +1,195 @@
+.about {
+  height: 100%;
+  display: flex;
+
+  @include tablets {
+    flex-direction: column;
+  }
+  @include phones {
+    flex-direction: column;
+  }
+
+  &__left {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $color_light_gray;
+    padding-bottom: 2.8rem;
+
+    @include wide {
+      display: grid;
+      grid-template-columns: 45% 55%;
+      grid-template-rows: 100%;
+      align-items: flex-start;
+    }
+    @include tablets {
+      padding-top: 2rem;
+      width: 100%;
+    }
+    @include phones {
+      width: 100%;
+      padding-top: 1rem;
+    }
+  }
+  &__first {
+    @include wide {
+      grid-column: 1 / 2;
+      grid-row: 1 / 2;
+    }
+  }
+  &__header {
+    padding-top: 0.4rem;
+    position: relative;
+    text-align: center;
+  }
+  &__second {
+    text-align: center;
+
+    @include wide {
+      grid-column: 2 / 3;
+      grid-row: 1 / 2;
+    }
+  }
+  &__picture {
+    width: 100%;
+  }
+  &__img {
+    margin-top: 2rem;
+    margin-bottom: 2.1rem;
+
+    @include wide {
+      margin-top: 0;
+    }
+    @include phones {
+      margin: 1rem 0;
+    }
+  }
+  &__title {
+    margin-bottom: 1.5rem;
+    padding: 0 6.5rem 1.5rem;
+    position: relative;
+    @include font-sansus(35px, 400);
+    text-align: center;
+    text-transform: uppercase;
+
+    @include wide {
+      margin-bottom: 2rem;
+    }
+    @include tablets {
+      font-size: rem(30px);
+      width: 60%;
+      margin: 0 auto;
+      padding-bottom: 0.6rem;
+    }
+    @include phones {
+      width: 60%;
+      padding: 0.3rem 0 1rem;
+      font-size: 21px;
+      margin: 0 auto;
+    }
+
+    &--right {
+      padding: 0 9rem 1.5rem;
+
+      @include wide {
+        width: 35%;
+        padding: 0;
+        margin-bottom: 3rem;
+      }
+      @include tablets {
+        width: 35%;
+        padding: 0 0 1rem 0;
+      }
+      @include phones {
+        width: 58%;
+        font-size: 21px;
+        padding: 0 0 1.3rem 0;
+      }
+    }
+
+    &:after {
+      content: ' ';
+      position: absolute;
+      width: 30%;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      border-bottom: 3px solid $color_dark;
+    }
+  }
+  &__text {
+    margin: 0 auto;
+    width: 74%;
+    line-height: 1.6rem;
+    text-align: left;
+
+    @include wide {
+      width: 87%;
+    }
+    @include tablets {
+      width: 62%;
+      font-size: rem(14px);
+      margin-top: 0.65rem;
+    }
+    @include phones {
+      width: 95%;
+      font-size: rem(14px);
+      margin-top: 0.65rem;
+    }
+
+    &--right {
+      width: 90%;
+
+      @include tablets {
+        width: 63%;
+      }
+      @include phones {
+        width: 94%;
+      }
+    }
+
+    p {
+      margin-bottom: 0.4rem;
+
+      &:last-child {
+        margin: 0;
+      }
+    }
+  }
+  &__right {
+    padding-top: 0.55rem;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $color_dark_white;
+    padding-bottom: 2.8rem;
+
+    @include wide {
+      padding-top: 0;
+    }
+    @include tablets {
+      width: 100%;
+      padding-top: 3rem;
+    }
+    @include phones {
+      width: 100%;
+      padding-top: 0.3rem;
+    }
+  }
+  &__skills {
+    width: 100%;
+    padding-left: 2.4rem;
+    margin-top: 3rem;
+
+    @include tablets {
+      padding-left: 0;
+      margin-top: 2.5rem;
+    }
+    @include phones {
+      padding-left: 0;
+      margin-top: 1.2rem;
+    }
+  }
+}

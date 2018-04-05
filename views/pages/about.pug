@@ -1,0 +1,126 @@
+extends ../main.layout.pug
+
+block variables
+    - var title = 'Личный сайт веб разработчика Андрея Лебедева | Обо мне'
+    - var wrapper = 'wrapper' 
+
+block content     
+
+    section.section.hero
+        .hero__top
+            .hero__top-left
+                - 
+                    var socialLinks = [
+                        ['vk',  'assets/images/sprite.svg#vk',     'https://vk.com/gygabyyyte' ],
+                        ['git', 'assets/images/sprite.svg#github', 'https://github.com/GyGaByyyTe' ],
+                        ['in',  'assets/images/sprite.svg#in',     'https://vk.com/gygabyyyte' ],
+                    ]                      
+                include ../common/socials.pug
+                +socials('socials--align_left socials--header',socialLinks)  
+
+            .hero__top-mid
+                - 
+                    var navLinks = [
+                        ['Мои работы',  'works.html'],
+                        ['Обо мне',     'about.html'],
+                        ['Блог',        'blog.html'],
+                        ['Авторизация', 'index.html']                    
+                    ]     
+                include ../common/navigation.pug
+                +navigation(navLinks)   
+
+            .hero__top-right
+                .hamburger                
+                    a(href='#' class='hamburger__link') Меню
+                        .hamburger__line
+
+        .hero__center
+            svg(class='transparent__svg-bg')
+                use(xlink:href='assets/images/sprite.svg#portfolio_header')         
+            .user
+                .user__pic
+                    //- img(src="./assets/images/userfiles/avatars/ava_index.jpg" alt="ava_index" class="user__pic-img")
+                    img(src=`${picture}`, alt="ava_index" class="user__pic-img")
+                .user__description
+                    .user__name Лебедев Андрей
+                    .user__info Личный сайт веб разработчика 
+        .hero__button
+            svg(class='hero__button-svg')
+                use(xlink:href='assets/images/sprite.svg#arrow_down')   
+
+    section.section.about 
+        .section__overlay
+            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1000 85" preserveaspectratio="none" class="traingle">
+                <polygon class = "section__overlay-left section__overlay-left--about" points="0,0   0,86   500.8,86   500.8,75.5"></polygon>
+                <polygon class = "section__overlay-right section__overlay-right--about" points="1000,0   1000,86   500,86   500,75.5"></polygon>
+            </svg>       
+        .about__left
+            .about__first
+                .about__header
+                    svg(class='transparent__svg-bg transparent__svg-bg--about_main')
+                        use(xlink:href='assets/images/sprite.svg#about_header')            
+                    h2.section__header.section__header--color_black Обо мне
+            .about__second
+                .about__picture
+                    img(src="./assets/images/userfiles/avatars/ava_about_1.png" alt="ava_about_1" class="about__img")
+                .about__title Кто я
+                .about__text
+                    p Я веб разработчик из Пензы. Мне 27 лет. Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
+                    p Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
+        .about__right#skills
+            .about__title.about__title--right Чем я могу быть вам полезен
+            .about__text.about__text--right
+                p Больше всего меня привлекет Frontend разработка, но я также знаком и могу решать не сложные задачи на Backend. Но давайте по порядку:
+            .about__skills
+                - 
+                    var skills = [
+                        {
+                            skillsType: 'Frontend',
+                            skillsList: [['HTML5',65], ['CSS3',55], ['JavaScript & jQuery',35]]
+                        },
+                        {
+                            skillsType: 'Backend',
+                            skillsList: [['PHP',10], ['mySQL',12], ['Node.js& npm',5], ['Mongo.db',5]]
+                        },
+                        {
+                            skillsType: 'WorkFlow',
+                            skillsList: [['Git',30], ['Gulp',28], ['Bower',5]]
+                        },                        
+                    ]
+                ul.skills
+                    each item in skills
+                        li.skills__item
+                            h4.skills__title= item.skillsType
+                            ul.skills__sublist
+                                each skill in item.skillsList
+                                    li.skills__exact-skill
+                                        .skills__name= skill[0]
+                                        svg(class="skills__circle" viewBox='0 0 110 110')
+                                            circle(r="45" cx="50%" cy="50%" fill="none" class="skills__first-circle")
+                                            circle(r="45" cx="50%" cy="50%" transform="rotate(-90 55 55)" class="skills__second-circle" data-percent=`${skill[1]}`)
+                                        //- </svg>    
+
+    section.section.map
+        .map__main#map
+        .map__contacts
+            .map__container   
+                .map__title Контакты
+                - 
+                    var infoArray = [
+                        ['assets/images/sprite.svg#skype',      'gygabyyyte' ],
+                        ['assets/images/sprite.svg#envelope2',  'gygabyyyte@gmail.com' ],
+                        ['assets/images/sprite.svg#phone2',     '+7 986 734 66 43' ],
+                        ['assets/images/sprite.svg#map_marker', 'г.Пенза, ул. Набережная р. Мойки' ],
+                    ]            
+                ul.map__info          
+                    each item in infoArray
+                        li.map__item 
+                            svg(class='map__svg')
+                                use(xlink:href=`${item[0]}`) 
+                            span.map__text= `${item[1]}`    
+
+block footer
+    include ../common/footer.pug
+    +footer
+
+    script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyD8yfmr5iCoJlQlgOHbQxy473Yb7sja91U&callback=initMap' async defer)

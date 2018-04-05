@@ -1,0 +1,41 @@
+.socials {
+  text-align: center;
+
+  &--align_left {
+    text-align: left;
+
+    @include phones {
+      text-align: center;
+    }
+  }
+  &--header {
+    @include phones {
+      text-align: left;
+    }
+  }
+}
+
+.socials__item {
+  font-size: 0;
+  display: inline-block;
+  margin-right: 1.9rem;
+  @include phones {
+    margin-right: 5vw;
+  }
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.socials__link {
+  display: inline-block;
+}
+
+.socials__svg {
+  vertical-align: middle;
+  overflow: hidden;
+  fill: #fff;
+  width: 25px;
+  height: 25px;
+  @include hover-anim-one(fill, $color_green_hover);
+}
