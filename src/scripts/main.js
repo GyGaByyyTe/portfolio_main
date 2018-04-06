@@ -4,7 +4,7 @@ const preloaderInit = require('./common/preloader');
 const flipperInit = require('./common/flipper');
 const blogInit = require('./common/blog');
 const skillsInit = require('./common/skills');
-const googleMap = require('./common/map');
+const initMap = require('./common/map');
 
 
 if (document.images.length > 0) {
@@ -12,6 +12,10 @@ if (document.images.length > 0) {
 } else {
   document.getElementById('js-preloader').classList.add('done');
   document.body.style.overflow = 'auto';
+}
+
+if (document.getElementById('map')) {
+  initMap();
 }
 
 if (document.getElementById('flipper')) {

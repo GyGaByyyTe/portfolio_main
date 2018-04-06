@@ -1,22 +1,22 @@
-const gulp = require("gulp");
+const gulp = require('gulp');
 
 // плагины галпа, объявлять не нужно, используем как $gp.имяПлагина (без приставки gulp-)
-const $gp = require("gulp-load-plugins")();
+const $gp = require('gulp-load-plugins')();
 
-const browserSync = require("browser-sync").create();
+const browserSync = require('browser-sync').create();
 const reload = browserSync.reload;
-const webpack = require("webpack");
-const mergeStream = require("merge-stream");
-const webpackConfig = require("./webpack.config.js");
-const moduleImporter = require("sass-module-importer");
-const del = require("del");
+const webpack = require('webpack');
+const mergeStream = require('merge-stream');
+const webpackConfig = require('./webpack.config.js');
+const moduleImporter = require('sass-module-importer');
+const del = require('del');
 
-const SRC_DIR = "src";
-const DIST_DIR = "public";
+const SRC_DIR = 'src';
+const DIST_DIR = 'public';
 const ROOT_PATH = `./${DIST_DIR}`;
 
 // стили
-gulp.task("styles", () => {
+gulp.task('styles', () => {
   return gulp
     .src(`${SRC_DIR}/styles/main.scss`)
     .pipe($gp.plumber())
@@ -24,34 +24,34 @@ gulp.task("styles", () => {
     .pipe($gp.sourcemaps.init())
     .pipe(
       $gp.sass({
-        outputStyle: "compressed",
+        outputStyle: 'compressed',
         importer: moduleImporter()
       })
     )
     .pipe(
       $gp.autoprefixer({
-        browsers: ["last 2 versions"],
+        browsers: ['last 2 versions'],
         cascade: false
       })
     )
     .pipe($gp.sourcemaps.write())
-    .pipe($gp.rename({ suffix: ".min" }))
+    .pipe($gp.rename({ suffix: '.min' }))
     .pipe(gulp.dest(`${DIST_DIR}/styles/`))
     .pipe(reload({ stream: true }));
 });
 
 // переносим шрифты
-gulp.task("fonts", () => {
+gulp.task('fonts', () => {
   return gulp.src(`${SRC_DIR}/fonts/**`).pipe(gulp.dest(`${DIST_DIR}/fonts/`));
 });
 
 // очистка
-gulp.task("clean", () => {
+gulp.task('clean', () => {
   return del(ROOT_PATH);
 });
 
 // собираем скрипты webpack
-gulp.task("scripts", () => {
+gulp.task('scripts', () => {
   return gulp
     .src(`${SRC_DIR}/scripts/main.js`)
     .pipe($gp.plumber())
@@ -59,17 +59,23 @@ gulp.task("scripts", () => {
     .pipe(gulp.dest(`${DIST_DIR}/scripts`))
     .pipe(reload({ stream: true }));
 });
+// просто переносим WebGL
+gulp.task('water', () => {
+  return gulp
+    .src('src/scripts/water.js')
+    .pipe(gulp.dest(`${SRC_DIR}/scripts/`));
+});
 
 // сервер node.js
-gulp.task("nodemon", done => {
+gulp.task('nodemon', done => {
   let started = false;
   $gp
     .nodemon({
-      script: "server.js",
-      env: { NODE_ENV: "development" },
-      watch: "server.js"
+      script: 'server.js',
+      env: { NODE_ENV: 'development' },
+      watch: 'server.js'
     })
-    .on("start", () => {
+    .on('start', () => {
       if (started) return;
       done();
       started = true;
@@ -78,10 +84,10 @@ gulp.task("nodemon", done => {
 
 // dev сервер + livereload (встроенный)
 gulp.task(
-  "server",
-  gulp.series("nodemon", done => {
+  'server',
+  gulp.series('nodemon', done => {
     browserSync.init({
-      proxy: "http://localhost:3000",
+      proxy: 'http://localhost:3000',
       port: 8080,
       open: false
     });
@@ -89,7 +95,7 @@ gulp.task(
 );
 
 // спрайт иконок + инлайн svg
-gulp.task("svg", done => {
+gulp.task('svg', done => {
   const prettySvgs = () => {
     return gulp
       .src(`${SRC_DIR}/images/icons/*.svg`)
@@ -103,17 +109,15 @@ gulp.task("svg", done => {
       .pipe(
         $gp.cheerio({
           run($) {
-            $("[fill], [stroke], [style], [width], [height]")
-              .removeAttr("fill")
-              .removeAttr("stroke")
-              .removeAttr("style")
-              .removeAttr("width")
-              .removeAttr("height");
+            $('[fill], [stroke], [style]')
+              .removeAttr('fill')
+              .removeAttr('stroke')
+              .removeAttr('style');
           },
           parserOptions: { xmlMode: true }
         })
       )
-      .pipe($gp.replace("&gt;", ">"));
+      .pipe($gp.replace('&gt;', '>'));
   };
 
   let svgSprite = prettySvgs()
@@ -121,13 +125,13 @@ gulp.task("svg", done => {
       $gp.svgSprite({
         mode: {
           symbol: {
-            sprite: "../sprite.svg"
+            sprite: '../sprite.svg'
           }
         }
       })
     )
     .pipe(gulp.dest(`${DIST_DIR}/images/icons`));
-  
+
   let svgInline = prettySvgs().pipe(
     $gp.sassInlineSvg({
       destDir: `${SRC_DIR}/styles/icons/`
@@ -138,34 +142,33 @@ gulp.task("svg", done => {
 });
 
 // просто переносим картинки
-gulp.task("images", () => {
+gulp.task('images', () => {
   return gulp
     .src([`${SRC_DIR}/images/**/*.*`, `!${SRC_DIR}/images/icons/*.*`])
     .pipe(gulp.dest(`${DIST_DIR}/images/`));
 });
 
 // галповский вотчер
-gulp.task("watch", () => {
-  gulp.watch(`${SRC_DIR}/styles/**/*.scss`, gulp.series("styles"));
-  gulp.watch(`${SRC_DIR}/images/**/*.*`, gulp.series("images"));
-  gulp.watch(`${SRC_DIR}/scripts/**/*.js`, gulp.series("scripts"));
-  gulp.watch(`${SRC_DIR}/fonts/*`, gulp.series("fonts"));
-  gulp.watch(`views/pages/*`).on("change", reload);
+gulp.task('watch', () => {
+  gulp.watch(`${SRC_DIR}/styles/**/*.scss`, gulp.series('styles'));
+  gulp.watch(`${SRC_DIR}/images/**/*.*`, gulp.series('images'));
+  gulp.watch(`${SRC_DIR}/scripts/**/*.js`, gulp.series('scripts'));
+  gulp.watch(`${SRC_DIR}/fonts/*`, gulp.series('fonts'));
+  gulp.watch(`views/pages/*`).on('change', reload);
 });
 
-
-gulp.task('build', gulp.series(
-  "svg",
-  gulp.parallel("styles", "images", "fonts", "scripts")
-));
+gulp.task(
+  'build',
+  gulp.series('svg', gulp.parallel('styles', 'images', 'fonts', 'scripts', 'water'))
+);
 
 // GULP:RUN
 gulp.task(
-  "default",
+  'default',
   gulp.series(
-    "clean",
-    "svg",
-    gulp.parallel("styles", "images", "fonts", "scripts"),
-    gulp.parallel("watch", "server")
+    'clean',
+    'svg',
+    gulp.parallel('styles', 'images', 'fonts', 'scripts', 'water'),
+    gulp.parallel('watch', 'server')
   )
 );

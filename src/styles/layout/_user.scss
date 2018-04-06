@@ -1,4 +1,5 @@
 .user {
+  position: relative;
   text-align: center;
 }
 
@@ -22,7 +23,11 @@
 .user__description {
   margin-top: 3%;
 }
-
+.user__pic {
+  width: 140px;
+  height: 140px;
+  margin: 0 auto;
+}
 .user__pic-img {
   border-radius: 50%;
   overflow: hidden;

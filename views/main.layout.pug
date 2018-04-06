@@ -15,6 +15,7 @@ html(lang="ru")
     meta(content="ie=edge" http-equiv="x-ua-compatible")
     link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i&amp;subset=cyrillic" )
     link(rel='stylesheet' href='/styles/main.min.css')
+    //- script(src='/scripts/main.bundle.js' defer)
 
     //- favicon block start
     //- favicon block end
@@ -26,7 +27,7 @@ html(lang="ru")
           path(class="preloader__icon-path" d="M0,25Q12.5,10 25,25T50,25T75,25T100,25" stroke="#FFFFFF" stroke-width="4" stroke-miterlimit="10" fill="none")
           path(class="preloader__icon-path" d="M0,40Q12.5,25 25,40T50,40T75,40T100,40" stroke="#FFFFFF" stroke-width="4" stroke-miterlimit="10" fill="none")
           path(class="preloader__icon-path" d="M0,55Q12.5,40 25,55T50,55T75,55T100,55" stroke="#FFFFFF" stroke-width="4" stroke-miterlimit="10" fill="none")          
-        #js-load-percent.preloader__text 0          
+        #js-load-percent.preloader__text 0 %          
     div(class=`${wrapper}`)
       block content 
       block footer  

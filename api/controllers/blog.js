@@ -1,24 +1,54 @@
 const mongoose = require('mongoose');
 
-module.exports.getArticles = function (req, res) {
+module.exports.getArticles = function(req, res) {
+  const avatar = {
+    name: 'Лебедев Андрей',
+    picture: '/images/userfiles/avatars/ava_index.jpg'
+  };
+  const picture = mongoose.model('pic');
   const blog = mongoose.model('blog');
+
+  let sendObj = {};
 
   blog
     .find()
-    .then(items => {
-      if (!items.length) {
-        res
-          .status(200)
-          .json({articles: []});
-      } else {
-        res
-          .status(200)
-          .json({articles: items});
+    .then(
+      items => {
+        if (!items.length) {
+          sendObj = Object.assign({}, sendObj, { articles: [] });
+        } else {
+          sendObj = Object.assign({}, sendObj, { articles: items });
+        }
+
+        return sendObj;
+      },
+      err => {
+        sendObj = Object.assign({}, sendObj, {
+          articles: { message: err.message, error: err }
+        });
+        return sendObj;
       }
+    )
+    .then(temp => {
+      picture.findOne().then(
+        item => {
+          if (!item) {
+            sendObj = Object.assign({}, temp, { picture: avatar });
+            res.status(200).json(sendObj);
+          } else {
+            sendObj = Object.assign({}, temp, { picture: item });
+            res.status(200).json(sendObj);
+          }
+        },
+        err => {
+          sendObj = Object.assign({}, temp, { message: err.message, error: err });
+          res.status(200).json(sendObj);
+        }
+      );
     });
 };
 
-module.exports.createArticle = function (req, res) {
+module.exports.createArticle = function(req, res) {
   // создаем новую запись блога и передаем в нее поля из формы
   const Model = mongoose.model('blog');
   let item = new Model({
@@ -27,23 +57,20 @@ module.exports.createArticle = function (req, res) {
     body: req.body.text
   });
   // сохраняем запись в базе
-  item
-    .save()
-    .then(item => {
-      return res
-        .status(201)
-        .json({status: 'Запись успешно добавлена'});
-    }, err => {
+  item.save().then(
+    item => {
+      return res.status(201).json({ status: 'Запись успешно добавлена' });
+    },
+    err => {
       // обрабатываем  и отправляем
-      res
-        .status(404)
-        .json({
-          status: 'При добавление записи произошла ошибка: ' + err
-        });
-    });  
+      res.status(404).json({
+        status: 'При добавление записи произошла ошибка: ' + err
+      });
+    }
+  );
 };
 
-module.exports.editArticle = function (req, res) {
+module.exports.editArticle = function(req, res) {
   const id = req.params.id;
 
   let data = {
@@ -54,43 +81,37 @@ module.exports.editArticle = function (req, res) {
 
   const Model = mongoose.model('blog');
 
-  Model
-    .findByIdAndUpdate(id, {$set: data})
-    .then((item) => {
+  Model.findByIdAndUpdate(id, { $set: data })
+    .then(item => {
       if (item) {
-        res
-          .status(200)
-          .json({status: 'Запись успешно обновлена'});
+        res.status(200).json({ status: 'Запись успешно обновлена' });
       } else {
-        res
-          .status(404)
-          .json({status: 'Запись в БД не обнаружена'});
+        res.status(404).json({ status: 'Запись в БД не обнаружена' });
       }
     })
-    .catch((err) => {
-      res
-        .status(404)
-        .json({
-          status: 'При обновлении записи произошла ошибка: ' + err
-        });
+    .catch(err => {
+      res.status(404).json({
+        status: 'При обновлении записи произошла ошибка: ' + err
+      });
     });
 };
 
-module.exports.deleteArticle = function (req, res) {
+module.exports.deleteArticle = function(req, res) {
   const id = req.params.id;
   const Model = mongoose.model('blog');
 
-  Model
-    .findByIdAndRemove(id)
-    .then((item) => {
+  Model.findByIdAndRemove(id).then(
+    item => {
       if (item) {
-        res.status(200).json({status: 'Запись успешно удалена'});
+        res.status(200).json({ status: 'Запись успешно удалена' });
       } else {
-        res.status(404).json({status: 'Запись в БД не обнаружена'});
+        res.status(404).json({ status: 'Запись в БД не обнаружена' });
       }
-    }, (err) => {
+    },
+    err => {
       res.status(404).json({
         status: 'При удалении записи произошла ошибка: ' + err
       });
-    });
-}
+    }
+  );
+};

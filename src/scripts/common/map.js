@@ -1,6 +1,6 @@
-//window.initMap 
-
-window.initMap  = function () {
+// window.initMap  = function () {
+module.exports = function () {
+  console.log("hello from map");
     var centerPoint = {lat: 53.1952765, lng: 44.8905376};
     var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 11,
@@ -231,4 +231,4 @@ window.initMap  = function () {
     });
 };
 
-module.exports = window.InitMap;
+// module.exports = window.initMap;

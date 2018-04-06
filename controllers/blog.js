@@ -11,14 +11,12 @@ module.exports.blog = function (req, res) {
     method: 'GET',
     json: {}
   };
-  const sendObj = {
-    title: 'My Blog'
-  };
 
   http(requestOptions, function (error, response, body) {
     if (error) {
       console.log(error);
     }
-    res.render('pages/blog', Object.assign({}, sendObj, body));
+    console.log("telo "+JSON.stringify(body));
+    res.render('pages/blog', Object.assign({}, body));
   });
 }

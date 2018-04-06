@@ -1,7 +1,6 @@
 module.exports = function () {
  
     (function () {
-        console.log("hello from preloader");
 
         function id(v) { return document.getElementById(v); }
         function loadBar() {

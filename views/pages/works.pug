@@ -10,9 +10,9 @@ block content
             .hero__top-left
                 - 
                     var socialLinks = [
-                        ['vk',  'assets/images/sprite.svg#vk',     'https://vk.com/gygabyyyte' ],
-                        ['git', 'assets/images/sprite.svg#github', 'https://github.com/GyGaByyyTe' ],
-                        ['in',  'assets/images/sprite.svg#in',     'https://vk.com/gygabyyyte' ],
+                        ['vk',  'images/icons/sprite.svg#vk',     'https://vk.com/gygabyyyte' ],
+                        ['git', 'images/icons/sprite.svg#github', 'https://github.com/GyGaByyyTe' ],
+                        ['in',  'images/icons/sprite.svg#in',     'https://vk.com/gygabyyyte' ],
                     ]                      
                 include ../common/socials.pug
                 +socials('socials--align_left socials--header',socialLinks)  
@@ -20,10 +20,10 @@ block content
             .hero__top-mid
                 - 
                     var navLinks = [
-                        ['Мои работы',  'works.html'],
-                        ['Обо мне',     'about.html'],
-                        ['Блог',        'blog.html'],
-                        ['Авторизация', 'index.html']                    
+                        ['Мои работы',  '/works'],
+                        ['Обо мне',     '/about'],
+                        ['Блог',        '/blog'],
+                        ['Авторизация', '/']                    
                     ]     
                 include ../common/navigation.pug
                 +navigation(navLinks)              
@@ -35,16 +35,17 @@ block content
 
         .hero__center        
             svg(class='transparent__svg-bg')
-                use(xlink:href='assets/images/sprite.svg#portfolio_header')
+                use(xlink:href='/images/icons/sprite.svg#portfolio_header')
             .user
-                .user__pic
-                    img(src="./assets/images/userfiles/avatars/ava_index.jpg" alt="ava_index" class="user__pic-img")
+                include ../common/user__pic.pug
+                +user__pic(`${picture}`)     
+
                 .user__description
-                    .user__name Лебедев Андрей
+                    .user__name= `${name}`
                     .user__info Личный сайт веб разработчика 
         .hero__button
             svg(class='hero__button-svg')
-                use(xlink:href='assets/images/sprite.svg#arrow_down')   
+                use(xlink:href='images/icons/sprite.svg#arrow_down')   
 
     section.section.works       
         .section__overlay
@@ -54,7 +55,7 @@ block content
             </svg>
         .works__header
             svg(class='transparent__svg-bg transparent__svg-bg--works')
-                use(xlink:href='assets/images/sprite.svg#works_header')             
+                use(xlink:href='images/icons/sprite.svg#works_header')             
             h2.section__header.section__header--color_black Мои работы    
         .works__slider
             .slider
@@ -65,24 +66,24 @@ block content
                 //- .slider__content
                 .slider__current
                     .slider__preview
-                        img(src="./assets/images/userfiles/slider/slide_1_big.png" alt="slide_1_big" class="slider__current-img")
+                        img(src="images/userfiles/slider/slide_1_big.png" alt="slide_1_big" class="slider__current-img")
                 a.slider__button.slider__button--prev
-                    img(src="./assets/images/userfiles/slider/slide_3_small.png" alt="slider_3_small" class="slider__button-img")
+                    img(src="images/userfiles/slider/slide_3_small.png" alt="slider_3_small" class="slider__button-img")
                     svg(class='slider__svg')
-                        use(xlink:href='assets/images/sprite.svg#portf_arrow_down')                          
+                        use(xlink:href='images/icons/sprite.svg#portf_arrow_down')                          
                 a.slider__button.slider__button--next
-                    img(src="./assets/images/userfiles/slider/slide_2_small.png" alt="slider_2_small" class="slider__button-img") 
+                    img(src="/images/userfiles/slider/slide_2_small.png" alt="slider_2_small" class="slider__button-img") 
                     svg(class='slider__svg')
-                        use(xlink:href='assets/images/sprite.svg#portf_arrow_up')                
+                        use(xlink:href='images/icons/sprite.svg#portf_arrow_up')                
     section.section.reviews    
         .reviews__header
             svg(class='transparent__svg-bg transparent__svg-bg--about')
-                use(xlink:href='assets/images/sprite.svg#about_header')           
+                use(xlink:href='images/icons/sprite.svg#about_header')           
             h2.section__header.section__header--color_black Что обо мне говорят   
         .reviews__comments
             ul.comments
                 li.comments__item
-                    img(src="./assets/images/userfiles/avatars/ava_comment_1.jpg" alt="comment_1" class="comments__item-img")  
+                    img(src="/images/userfiles/avatars/ava_comment_1.jpg" alt="comment_1" class="comments__item-img")  
                     .comments__text
                         p Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
                     .comments__info
@@ -91,7 +92,7 @@ block content
                         .comments__info-position
                             span  — основатель Loftschool             
                 li.comments__item
-                    img(src="./assets/images/userfiles/avatars/ava_comment_2.jpg" alt="comment_2" class="comments__item-img")  
+                    img(src="/images/userfiles/avatars/ava_comment_2.jpg" alt="comment_2" class="comments__item-img")  
                     .comments__text
                         p Этот код выдержит любые испытания. Только, пожалуйста, не загружайте сайт на слишком старых браузерах!
                     .comments__info
@@ -114,7 +115,7 @@ block content
                     <button type="reset" class="form__button form__button--clear">Очистить</button>
             .reviews__button
                 svg(class='reviews__button-svg')
-                    use(xlink:href='assets/images/sprite.svg#portf_arrow_up')                     
+                    use(xlink:href='images/icons/sprite.svg#portf_arrow_up')                     
 
 
 block footer

@@ -13,17 +13,17 @@ block content
         .index__center#flipper
             .index__card
                 .index__user.user
-                    .user__pic
-                        img(src="./assets/images/userfiles/avatars/ava_index.jpg" alt="ava_index" class="user__pic-img")
+                    include ../common/user__pic.pug
+                    +user__pic(`${picture}`)     
                     .user__description
                         .user__name.user__name--index Лебедев Андрей
                         .user__info Личный сайт разработчика
                 .index__socials
                     - 
                         var socialLinks = [
-                            ['vk',  'assets/images/sprite.svg#vk',     'https://vk.com/gygabyyyte' ],
-                            ['git', 'assets/images/sprite.svg#github', 'https://github.com/GyGaByyyTe' ],
-                            ['in',  'assets/images/sprite.svg#in',     'https://vk.com/gygabyyyte' ],
+                            ['vk',  'images/icons/sprite.svg#vk',     'https://vk.com/gygabyyyte' ],
+                            ['git', 'images/icons/sprite.svg#github', 'https://github.com/GyGaByyyTe' ],
+                            ['in',  'images/icons/sprite.svg#in',     'https://vk.com/gygabyyyte' ],
                         ]                      
                     include ../common/socials.pug
                     +socials('',socialLinks) 

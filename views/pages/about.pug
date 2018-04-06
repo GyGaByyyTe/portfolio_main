@@ -11,9 +11,9 @@ block content
             .hero__top-left
                 - 
                     var socialLinks = [
-                        ['vk',  'assets/images/sprite.svg#vk',     'https://vk.com/gygabyyyte' ],
-                        ['git', 'assets/images/sprite.svg#github', 'https://github.com/GyGaByyyTe' ],
-                        ['in',  'assets/images/sprite.svg#in',     'https://vk.com/gygabyyyte' ],
+                        ['vk',  'images/icons/sprite.svg#vk',     'https://vk.com/gygabyyyte' ],
+                        ['git', 'images/icons/sprite.svg#github', 'https://github.com/GyGaByyyTe' ],
+                        ['in',  'images/icons/sprite.svg#in',     'https://vk.com/gygabyyyte' ],
                     ]                      
                 include ../common/socials.pug
                 +socials('socials--align_left socials--header',socialLinks)  
@@ -21,10 +21,10 @@ block content
             .hero__top-mid
                 - 
                     var navLinks = [
-                        ['Мои работы',  'works.html'],
-                        ['Обо мне',     'about.html'],
-                        ['Блог',        'blog.html'],
-                        ['Авторизация', 'index.html']                    
+                        ['Мои работы',  '/works'],
+                        ['Обо мне',     '/about'],
+                        ['Блог',        '/blog'],
+                        ['Авторизация', '/']                    
                     ]     
                 include ../common/navigation.pug
                 +navigation(navLinks)   
@@ -36,17 +36,17 @@ block content
 
         .hero__center
             svg(class='transparent__svg-bg')
-                use(xlink:href='assets/images/sprite.svg#portfolio_header')         
+                use(xlink:href='images/icons/sprite.svg#portfolio_header')         
             .user
-                .user__pic
-                    //- img(src="./assets/images/userfiles/avatars/ava_index.jpg" alt="ava_index" class="user__pic-img")
-                    img(src=`${picture}`, alt="ava_index" class="user__pic-img")
+                include ../common/user__pic.pug
+                +user__pic(`${picture}`)               
+                
                 .user__description
                     .user__name Лебедев Андрей
                     .user__info Личный сайт веб разработчика 
         .hero__button
             svg(class='hero__button-svg')
-                use(xlink:href='assets/images/sprite.svg#arrow_down')   
+                use(xlink:href='images/icons/sprite.svg#arrow_down')   
 
     section.section.about 
         .section__overlay
@@ -58,11 +58,11 @@ block content
             .about__first
                 .about__header
                     svg(class='transparent__svg-bg transparent__svg-bg--about_main')
-                        use(xlink:href='assets/images/sprite.svg#about_header')            
+                        use(xlink:href='images/icons/sprite.svg#about_header')            
                     h2.section__header.section__header--color_black Обо мне
             .about__second
                 .about__picture
-                    img(src="./assets/images/userfiles/avatars/ava_about_1.png" alt="ava_about_1" class="about__img")
+                    img(src="images/userfiles/avatars/ava_about_1.png" alt="ava_about_1" class="about__img")
                 .about__title Кто я
                 .about__text
                     p Я веб разработчик из Пензы. Мне 27 лет. Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
@@ -107,10 +107,10 @@ block content
                 .map__title Контакты
                 - 
                     var infoArray = [
-                        ['assets/images/sprite.svg#skype',      'gygabyyyte' ],
-                        ['assets/images/sprite.svg#envelope2',  'gygabyyyte@gmail.com' ],
-                        ['assets/images/sprite.svg#phone2',     '+7 986 734 66 43' ],
-                        ['assets/images/sprite.svg#map_marker', 'г.Пенза, ул. Набережная р. Мойки' ],
+                        ['images/icons/sprite.svg#skype',      'gygabyyyte' ],
+                        ['images/icons/sprite.svg#envelope2',  'gygabyyyte@gmail.com' ],
+                        ['images/icons/sprite.svg#phone2',     '+7 986 734 66 43' ],
+                        ['images/icons/sprite.svg#map_marker', 'г.Пенза, ул. Набережная р. Мойки' ],
                     ]            
                 ul.map__info          
                     each item in infoArray
@@ -123,4 +123,5 @@ block footer
     include ../common/footer.pug
     +footer
 
-    script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyD8yfmr5iCoJlQlgOHbQxy473Yb7sja91U&callback=initMap' async defer)
+    script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyD8yfmr5iCoJlQlgOHbQxy473Yb7sja91U')
+    //-&callback=initMap' async defer
