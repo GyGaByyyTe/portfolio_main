@@ -1,13 +1,28 @@
+import axios from 'axios';
+
 const skills = {
   state: {
+    msgSkills: '',
     data: []
   },
   getters: {
     skills(state) {
       return state.data;
+    },
+    msgSkills(state) {
+      return state.msgSkills;
     }
   },
   mutations: {
+    saveAll(state, data) {
+      // console.log('hello skillId ' + data.id);
+
+      state.data.forEach(element => {
+        if (element._id == data.id) {
+          element.percents = data.value;
+        }
+      });
+    },
     addSkill(state, skill) {
       state.data.push(skill);
     },
@@ -17,62 +32,21 @@ const skills = {
   },
   actions: {
     fetchSkills({ state }) {
-      state.data = [
-        {
-          id: 1,
-          name: 'Html',
-          percents: 10,
-          type: 1
-        },
-        {
-          id: 2,
-          name: 'CSS',
-          percents: 20,
-          type: 1
-        },
-        {
-          id: 3,
-          name: 'javaScript',
-          percents: 30,
-          type: 1
-        },
-        {
-          id: 4,
-          name: 'Git',
-          percents: 40,
-          type: 2
-        },
-        {
-          id: 5,
-          name: 'Gulp',
-          percents: 50,
-          type: 2
-        },
-        {
-          id: 6,
-          name: 'Bower',
-          percents: 60,
-          type: 2
-        },
-        {
-          id: 7,
-          name: 'Php',
-          percents: 70,
-          type: 3
-        },
-        {
-          id: 8,
-          name: 'Node.js',
-          percents: 80,
-          type: 3
-        },
-        {
-          id: 9,
-          name: 'Mongo.db',
-          percents: 90,
-          type: 3
-        }
-      ];
+      axios.get('http://localhost:3000/api/about').then(rs => {
+        state.data = rs.data.skills;
+        // console.log('fetchSkills about ' + state);
+      });
+    },
+    saveSkills({ state, commit }, data) {
+      // console.log('saveSkills ');
+      // console.log(data);
+      axios({
+        method: 'post',
+        url: 'http://localhost:3000/api/about',
+        data: data
+      }).then(rs => {
+        state.msgSkills = rs.data.status;
+      });;
     }
   }
 };

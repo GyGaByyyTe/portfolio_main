@@ -2,7 +2,7 @@
   tr
     td.first-cell {{skill.name}}
     td.second-cell
-      input(type="text" :value="skill.percents")
+      input(type="text" :value="skill.percents" ref="skillInput" @change=`saveSkill(skill._id)`)
 </template>
 
 <script>
@@ -11,10 +11,23 @@ export default {
   props: {
     skill: Object
   },
+  data: () => {
+    return {};
+  },
   methods: {
-    ...mapMutations(['removeSkill']),
+    ...mapMutations(['removeSkill', 'saveAll']),
     removeExistedSkill(skillId) {
       this.removeSkill(skillId);
+    },
+    saveSkill(skillId) {
+      if (this.$refs.skillInput.value == '') {
+        this.$refs.skillInput.value = 0;
+      }
+      let data = {
+        id: skillId,
+        value: this.$refs.skillInput.value
+      };
+      this.saveAll(data);
     }
   }
 };

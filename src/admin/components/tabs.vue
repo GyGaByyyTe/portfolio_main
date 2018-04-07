@@ -21,8 +21,6 @@ export default {
   },
   methods: {
     changeTab(next) {
-      console.log(this.prevTab);
-      console.log(next);
       this.tabs[this.prevTab].active = false;
       this.tabs[next].active = true;
       this.prevTab = next;

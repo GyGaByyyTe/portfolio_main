@@ -6,6 +6,7 @@ const ctrlAvatar = require('../controllers/avatar');
 const ctrlAbout = require('../controllers/about');
 
 router.get('/about', ctrlAbout.getSkills); // READ
+router.post('/about', ctrlAbout.setSkills); // READ
 
 router.get('/blog', ctrlBlog.getArticles); // READ
 router.post('/blog', ctrlBlog.createArticle); // CREATE

@@ -16,7 +16,7 @@ module.exports.blog = function (req, res) {
     if (error) {
       console.log(error);
     }
-    console.log("telo  blogs"+JSON.stringify(body));
+
     res.render('pages/blog', Object.assign({}, body));
   });
 }

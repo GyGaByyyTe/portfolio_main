@@ -6,15 +6,13 @@ module.exports.getAvatar = function(req, res) {
     picture: '/images/userfiles/avatars/ava_index.jpg'
   };
   const picture = mongoose.model('pic');
-  picture
-    .findOne()
-    .then(item => {
-      if (!item) {
-        res.status(200).json(avatar);
-      } else {
-        res.status(200).json(item);
-      }
-    });
+  picture.findOne().then(item => {
+    if (!item) {
+      res.status(200).json(avatar);
+    } else {
+      res.status(200).json(item);
+    }
+  });
 };
 
 module.exports.setAvatar = function(req, res) {

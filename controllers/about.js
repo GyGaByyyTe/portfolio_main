@@ -19,7 +19,6 @@ module.exports.about = function(req, res) {
     if (error) {
       console.log(error);
     }
-    console.log("telo about "+JSON.stringify(body));
     res.render('pages/about', Object.assign({}, sendObj, body));
   });
 };

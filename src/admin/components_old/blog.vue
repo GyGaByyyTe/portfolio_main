@@ -27,7 +27,6 @@ export default {
   },
   methods: {
     sendArticle: function() {
-      console.log(this.title, this.date, this.text);
       this.axios({
         method: 'post',
         url: 'http://localhost:3000/api/blog',

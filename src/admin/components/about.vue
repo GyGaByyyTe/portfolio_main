@@ -1,14 +1,16 @@
 <template lang="pug">
   .about-section
     h2 Страница "Обо мне"
-    .about-list
-      skills-list(
-        v-for="skillType in skillsTypes"
-        :key="skillType"
-        :skillType="skillType"
-        :skills="skills"
-      )
-    button(class="about-save" type="button" @click="saveSection") Сохранить
+    form.form#about(@submit.prevent="save")
+      .status {{msgSkills}}
+      .about-list
+        skills-list(
+          v-for="skillType in skillsTypes"
+          :key="skillType"
+          :skillType="skillType"
+          :skills="skills"
+        )
+      input(name="" value="Сохранить" class="about-save" type="submit")
 
 </template>
 <script>
@@ -24,15 +26,16 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['skills'])
+    ...mapGetters(['skills', 'msgSkills'])
   },
   methods: {
-    ...mapActions(['fetchSkills']),
-    saveSection() {
-      console.log('save all to JSON');
+    ...mapActions(['fetchSkills', 'saveSkills']),
+    save: function() {
+      let data = this.skills;
+      this.saveSkills(data);
     }
   },
-  mounted() {
+  mounted: function() {
     this.fetchSkills();
   }
 };
