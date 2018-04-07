@@ -1,0 +1,80 @@
+const skills = {
+  state: {
+    data: []
+  },
+  getters: {
+    skills(state) {
+      return state.data;
+    }
+  },
+  mutations: {
+    addSkill(state, skill) {
+      state.data.push(skill);
+    },
+    removeSkill(state, skillId) {
+      state.data = state.data.filter(item => item.id !== skillId);
+    }
+  },
+  actions: {
+    fetchSkills({ state }) {
+      state.data = [
+        {
+          id: 1,
+          name: 'Html',
+          percents: 10,
+          type: 1
+        },
+        {
+          id: 2,
+          name: 'CSS',
+          percents: 20,
+          type: 1
+        },
+        {
+          id: 3,
+          name: 'javaScript',
+          percents: 30,
+          type: 1
+        },
+        {
+          id: 4,
+          name: 'Git',
+          percents: 40,
+          type: 2
+        },
+        {
+          id: 5,
+          name: 'Gulp',
+          percents: 50,
+          type: 2
+        },
+        {
+          id: 6,
+          name: 'Bower',
+          percents: 60,
+          type: 2
+        },
+        {
+          id: 7,
+          name: 'Php',
+          percents: 70,
+          type: 3
+        },
+        {
+          id: 8,
+          name: 'Node.js',
+          percents: 80,
+          type: 3
+        },
+        {
+          id: 9,
+          name: 'Mongo.db',
+          percents: 90,
+          type: 3
+        }
+      ];
+    }
+  }
+};
+
+export default skills;

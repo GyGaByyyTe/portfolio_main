@@ -1,0 +1,26 @@
+.list {
+  display: flex;
+  background: $beige;
+}
+
+.item {
+  border-right: 2px solid #fff;
+
+  &--active {
+    background-color: white;
+
+    .link {
+      opacity: 1;
+      color: #6c9c5a;
+    }
+  }
+}
+
+.link {
+  padding: 20px;
+  display: block;
+  opacity: 0.8;
+  color: #566358;
+  text-transform: uppercase;
+  text-decoration: none;
+}

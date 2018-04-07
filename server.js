@@ -2,8 +2,9 @@ const express = require('express');
 const path = require('path');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
-require('./api/models/db');
 const mongoose = require('mongoose');
+
+require('./api/models/db');
 
 const app = express();
 const index = require('./routes/index');

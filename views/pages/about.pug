@@ -38,9 +38,10 @@ block content
             svg(class='transparent__svg-bg')
                 use(xlink:href='images/icons/sprite.svg#portfolio_header')         
             .user
-                include ../common/user__pic.pug
-                +user__pic(`${picture}`)               
-                
+                if (picture)
+                    include ../common/user__pic.pug
+                    +user__pic(`${picture.picture}`)            
+
                 .user__description
                     .user__name Лебедев Андрей
                     .user__info Личный сайт веб разработчика 
@@ -73,32 +74,21 @@ block content
                 p Больше всего меня привлекет Frontend разработка, но я также знаком и могу решать не сложные задачи на Backend. Но давайте по порядку:
             .about__skills
                 - 
-                    var skills = [
-                        {
-                            skillsType: 'Frontend',
-                            skillsList: [['HTML5',65], ['CSS3',55], ['JavaScript & jQuery',35]]
-                        },
-                        {
-                            skillsType: 'Backend',
-                            skillsList: [['PHP',10], ['mySQL',12], ['Node.js& npm',5], ['Mongo.db',5]]
-                        },
-                        {
-                            skillsType: 'WorkFlow',
-                            skillsList: [['Git',30], ['Gulp',28], ['Bower',5]]
-                        },                        
-                    ]
+                    var skillsTypes = ['Frontend','WorkFlow','Backend']
                 ul.skills
-                    each item in skills
-                        li.skills__item
-                            h4.skills__title= item.skillsType
-                            ul.skills__sublist
-                                each skill in item.skillsList
-                                    li.skills__exact-skill
-                                        .skills__name= skill[0]
-                                        svg(class="skills__circle" viewBox='0 0 110 110')
-                                            circle(r="45" cx="50%" cy="50%" fill="none" class="skills__first-circle")
-                                            circle(r="45" cx="50%" cy="50%" transform="rotate(-90 55 55)" class="skills__second-circle" data-percent=`${skill[1]}`)
-                                        //- </svg>    
+                    if (skills)    
+                        - for (var i=0; i<skillsTypes.length; i++)                                   
+                            li.skills__item
+                                h4.skills__title= skillsTypes[i] 
+                                ul.skills__sublist
+                                    each skill in skills
+                                        if (skill.type == i+1 )
+                                            li.skills__exact-skill
+                                                .skills__name= skill.name
+                                                svg(class="skills__circle" viewBox='0 0 110 110')
+                                                    circle(r="45" cx="50%" cy="50%" fill="none" class="skills__first-circle")
+                                                    circle(r="45" cx="50%" cy="50%" transform="rotate(-90 55 55)" class="skills__second-circle" data-percent=`${skill.percents}`)
+                                //- </svg>    
 
     section.section.map
         .map__main#map

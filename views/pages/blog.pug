@@ -34,8 +34,11 @@ block content
 
         .hero__center.hero__center--blog
             .user
-                include ../common/user__pic.pug
-                +user__pic(`${picture.picture}`)     
+                if (picture)
+                    include ../common/user__pic.pug
+                    +user__pic(`${picture.picture}`)   
+                else 
+                    .status= `${error.message}`
             .hero__description
                 .hero__header
                     svg(class='transparent__svg-bg transparent__svg-bg--blog')
