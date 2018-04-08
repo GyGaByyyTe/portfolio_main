@@ -20,7 +20,7 @@ module.exports.getSlider = function(req, res) {
     .find()
     .then(items => {
       if (!items.length) {
-        sendObj = Object.assign({}, sendObj, { slides: [] });
+        sendObj = Object.assign({}, sendObj, { slides: [slide] });
         // res.status(200).json(avatar);
       } else {
         sendObj = Object.assign({}, sendObj, { slides: items });

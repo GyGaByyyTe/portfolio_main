@@ -30,7 +30,7 @@ if (document.getElementsByClassName('skills__second-circle').length > 0) {
   skillsInit();
 }
 
-if (document.getElementsByClassName('slider__current-item').length > 0) {
+if (document.getElementsByClassName('slider__current-item').length > 1) {
   sliderInit();
 }
 
