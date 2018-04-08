@@ -1,30 +1,42 @@
-const config = require('../config.json');
+const mongoose = require('mongoose');
+const passport = require('passport');
 const http = require('request');
-const apiOptions = {
-  server: 'http://localhost:3000'
-};
+const config = require('../config/config.json');
+
+const apiServer = config.server.path;
 
 module.exports.login = function(req, res) {
-  const pathApi = '/api/avatar';
+  // if (req.isAuthenticated()) {
+  //   return res.redirect('/admin');
+  // }
+  const pathApi = config.server.avatar;
   const requestOptions = {
-    url: apiOptions.server + pathApi,
+    url: apiServer + pathApi,
     method: 'GET',
     json: {}
   };
   const sendObj = {
-    msg: req.query.msg
+    msg: req.flash('message')
   };
   http(requestOptions, function(error, response, body) {
-     res.render('pages/login', Object.assign({}, sendObj, body));
+    res.render('pages/login', Object.assign({}, sendObj, body));
   });
 };
 
-module.exports.auth = function(req, res) {
-  // требуем наличия логина и пароля в теле запроса
-  if (!req.body.login || !req.body.password) {
-    // если не указан логин или пароль - сообщаем об этом
-    return res.redirect('/login?msg=Все поля обязательны к заполнению!');
-  }
-
-  res.redirect('/admin');
+module.exports.auth = function(req, res, next) {
+  passport.authenticate('loginUsers', (err, user) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      req.flash('message', ' укажите правильный логин и пароль!');
+      return res.redirect('/');
+    }
+    req.logIn(user, function(err) {
+      if (err) {
+        return next(err);
+      }
+      return res.redirect('/admin');
+    });
+  })(req, res, next);
 };

@@ -37,11 +37,12 @@ block content
             svg(class='transparent__svg-bg')
                 use(xlink:href='/images/icons/sprite.svg#portfolio_header')
             .user
-                include ../common/user__pic.pug
-                +user__pic(`${picture}`)     
+                if (picture)
+                    include ../common/user__pic.pug
+                    +user__pic(`${picture.picture}`)  
 
                 .user__description
-                    .user__name= `${name}`
+                    .user__name= `${picture.name}`
                     .user__info Личный сайт веб разработчика 
         .hero__button
             svg(class='hero__button-svg')
@@ -60,19 +61,34 @@ block content
         .works__slider
             .slider
                 .slider__description
-                    h3.slider__title Сайт школы онлайн Образования
-                    p.slider__text HTML , CSS, JAVASCRIPT
-                    a(href='#' class='slider__link button button--color_green') Посмотреть сайт
-                //- .slider__content
+                    ul.slider__desription-wrapper
+                        if (slides)        
+                            each slide, index in slides        
+                                li.slider__description-item
+                                    h3.slider__title= slide.name 
+                                    p.slider__text= slide.tech 
+                                    a(href='#' class='slider__link button button--color_green') Посмотреть сайт
                 .slider__current
-                    .slider__preview
-                        img(src="images/userfiles/slider/slide_1_big.png" alt="slide_1_big" class="slider__current-img")
+                    ul.slider__current-wrapper
+                        if (slides)        
+                            each slide, index in slides                        
+                                li.slider__current-item                
+                                    .slider__preview
+                                        img(src=`${slide.picture}` alt="slide_big" class="slider__current-img")
                 a.slider__button.slider__button--prev
-                    img(src="images/userfiles/slider/slide_3_small.png" alt="slider_3_small" class="slider__button-img")
+                    ul.slider__button-prev-wrapper
+                        if (slides)        
+                            each slide, index in slides                       
+                                li.slider__button-prev-item                  
+                                    img(src=`${slide.picture}` alt="slider_small" class="slider__button-img")
                     svg(class='slider__svg')
                         use(xlink:href='images/icons/sprite.svg#portf_arrow_down')                          
                 a.slider__button.slider__button--next
-                    img(src="/images/userfiles/slider/slide_2_small.png" alt="slider_2_small" class="slider__button-img") 
+                    ul.slider__button-next-wrapper
+                        if (slides)        
+                            each slide, index in slides                       
+                                li.slider__button-next-item                     
+                                    img(src=`${slide.picture}` alt="slider_small" class="slider__button-img") 
                     svg(class='slider__svg')
                         use(xlink:href='images/icons/sprite.svg#portf_arrow_up')                
     section.section.reviews    
@@ -101,18 +117,20 @@ block content
                         .comments__info-position
                             span — преподаватель  
         .reviews__contacts
-            form.reviews__form.form
+            form.reviews__form.form#mail(action='/mail' method="POST" enctype="application/x-www-form-urlencoded")
                 .form__container
                     h3.form__title Связаться со мной
+                    if (msg)
+                        .status= msg                    
                     .form__row
-                        input(type='text' name='user-name' class='form__input' required)
+                        input(type='text' name='name' class='form__input' required)
                     .form__row
-                        input(type='email' name='user-mail' class='form__input' required)  
+                        input(type='email' name='email' class='form__input' required)  
                     .form__row
-                        textarea(cols='30' rows='4' name='user-comment' class='form__text-area')   
+                        textarea(cols='30' rows='4' name='text' class='form__text-area')   
                 .form__buttons
-                    <button type="submit" class="form__button form__button--order">Отправить</button>                             
-                    <button type="reset" class="form__button form__button--clear">Очистить</button>
+                    input(name="" type="submit" class="form__button form__button--order" value="Отправить")                             
+                    input(name="" type="reset" class="form__button form__button--clear" value="Очистить")
             .reviews__button
                 svg(class='reviews__button-svg')
                     use(xlink:href='images/icons/sprite.svg#portf_arrow_up')                     

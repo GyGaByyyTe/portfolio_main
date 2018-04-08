@@ -1,14 +1,12 @@
-const config = require('../config.json');
 const http = require('request');
+const config = require('../config/config.json');
 
-const apiOptions = {
-  server: 'http://localhost:3000'
-};
+const apiServer = config.server.path;
 
 module.exports.about = function(req, res) {
-  const pathApi = '/api/about';
+  const pathApi = config.server.about;
   const requestOptions = {
-    url: apiOptions.server + pathApi,
+    url: apiServer + pathApi,
     method: 'GET',
     json: {}
   };

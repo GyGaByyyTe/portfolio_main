@@ -1,4 +1,12 @@
 {
+  "server": {
+    "path": "http://localhost:3000",
+    "blog": "/api/blog",
+    "avatar": "/api/avatar",
+    "about": "/api/about",
+    "work": "/api/work",
+    "secure": "loftschool"
+  },
   "db": {
     "host": "localhost",
     "port": "27017",
@@ -13,8 +21,8 @@
       "port": 465,
       "secure": true,
       "auth": {
-        "user": "webinar.loftschool@gmail.com",
-        "pass": "mailPassword2018"
+        "user": "test@gmail.com",
+        "pass": "12345"
       }
     }
   }

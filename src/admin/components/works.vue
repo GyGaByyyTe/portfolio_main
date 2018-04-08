@@ -1,24 +1,50 @@
 <template lang="pug">
   div.works
     h2 Страница «Мои работы»
-    form(enctype="multipart/form-data" method="post")  
+    form.form#upload(@submit.prevent="sendFile" enctype="multipart/form-data")  
       .works-title Добавить работу
+      .status {{msgfile}}      
       .works-row
-        input(type='text' name='work-name' class='works-input' placeholder="Название проекта" required)
+        input(type='text' v-model="name" class='works-input' placeholder="Название проекта" required)
       .works-row      
-        input(type='text' name='work-date' class='works-input' placeholder="Технологии")  
+        input(type='text' v-model="tech" class='works-input' placeholder="Технологии")  
       .works-row 
         .work-upload     
           label
-              input(class="works-open" type="file")
+              input(:photo="photo" class="works-open" type="file" accept="image/*" @change="fileChange($event.target.files)" ref="upload")
               span Загрузить картинку          
-      button(class="works-save" type="submit" @click="saveWork") Добавить      
+      input(class="works-save" type="submit" value="Добавить")  
 </template>
+
 <script>
 export default {
+  data: () => {
+    return {
+      name: '',
+      tech: '',
+      photo: null,
+      msgfile: ''
+    };
+  },
   methods: {
-    saveWork() {
-      console.log('save all to JSON');
+    sendFile: function() {
+      let formData = new FormData();
+      formData.append('photo', this.photo, this.photo.name);
+      formData.append('tech', this.tech);
+      formData.append('name', this.name);
+      this.axios.post('http://localhost:3000/admin/work', formData).then(rs => {
+        this.msgfile = rs.data.msg;
+        if (rs.data.status === 'Ok') {
+          this.name = '';
+          this.tech = '';
+          this.photo = null;
+          this.$refs.upload.value = null;
+        }
+      });
+    },
+    fileChange: function(file) {
+      this.photo = file[0];
+      console.log(this.photo);
     }
   }
 };

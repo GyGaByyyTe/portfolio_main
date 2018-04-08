@@ -1,22 +1,21 @@
 const http = require('request');
+const config = require('../config/config.json');
 
-const apiOptions = {
-  server: 'http://localhost:3000'
-};
+const apiServer = config.server.path;
 
-module.exports.blog = function (req, res) {
-  const pathAPI = '/api/blog';
+module.exports.blog = function(req, res) {
+  const pathAPI = config.server.blog;
   const requestOptions = {
-    url: apiOptions.server + pathAPI,
+    url: apiServer + pathAPI,
     method: 'GET',
     json: {}
   };
 
-  http(requestOptions, function (error, response, body) {
+  http(requestOptions, function(error, response, body) {
     if (error) {
       console.log(error);
     }
 
     res.render('pages/blog', Object.assign({}, body));
   });
-}
+};

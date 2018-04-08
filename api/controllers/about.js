@@ -61,7 +61,7 @@ module.exports.setSkills = function(req, res) {
     (err, item) => {
       if (err)
         return res.status(400).json({ message: err.message, error: err });
-      console.log(item);
+        
       return res.status(201).json({ status: 'Все изменения сохранены' });
     }
     // err => {

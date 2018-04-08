@@ -1,25 +1,23 @@
 const nodemailer = require('nodemailer');
-const config = require('../config.json');
 const http = require('request');
-const apiOptions = {
-  server: "http://localhost:3000"
-};
+const config = require('../config/config.json');
 
-module.exports.works = function (req, res) {
-  const pathApi = '/api/avatar';
+const apiServer = config.server.path;
+
+module.exports.works = function(req, res) {
+  const pathApi = config.server.work;
   const requestOptions = {
-    url: apiOptions.server + pathApi,
-    method: "GET",
+    url: apiServer + pathApi,
+    method: 'GET',
     json: {}
   };
   const sendObj = {
-    msg: req.query.msg
+    msg: req.flash('message')
   };
-  http(requestOptions, function (error, response, body) {
-    console.log(body);
+  http(requestOptions, function(error, response, body) {
     res.render('pages/works', Object.assign({}, sendObj, body));
-  })
-}
+  });
+};
 
 module.exports.sendEmail = function(req, res) {
   // требуем наличия имени, обратной почты и текста
@@ -33,18 +31,18 @@ module.exports.sendEmail = function(req, res) {
     from: `"${req.body.name}" <${req.body.email}>`,
     to: config.mail.smtp.auth.user,
     subject: config.mail.subject,
-    text: req
-      .body
-      .text
-      .trim()
-      .slice(0, 500) + `\n Отправлено с: <${req.body.email}>`
+    text:
+      req.body.text.trim().slice(0, 500) +
+      `\n Отправлено с: <${req.body.email}>`
   };
   // отправляем почту
-  transporter.sendMail(mailOptions, function (error, info) {
+  transporter.sendMail(mailOptions, function(error, info) {
     //если есть ошибки при отправке - сообщаем об этом
-    if (error) {
-      return res.redirect('/?msg=При отправке письма произошла ошибка: ' + error);
-    }
-    res.redirect('/?msg=Письмо успешно отправлено');
+    // if (error) {
+    //   return res.redirect(
+    //     '/?msg=При отправке письма произошла ошибка: ' + error
+    //   );
+    // }
+    res.redirect('/?msg=Письмо успешно отправлено(нет)');
   });
-}
+};

@@ -63,7 +63,7 @@ gulp.task('scripts', () => {
 gulp.task('water', () => {
   return gulp
     .src('src/scripts/water.js')
-    .pipe(gulp.dest(`${SRC_DIR}/scripts/`));
+    .pipe(gulp.dest(`${DIST_DIR}/scripts/`));
 });
 
 // сервер node.js

@@ -16,15 +16,13 @@
         100px,
         15vh
       );
-  }  
-  &__description {
+  }
+  .slider__description {
+    position: relative;
+    overflow: hidden;
     grid-column: 1 / 2;
     grid-row: 1 / 3;
-    background-color: $color_light_gray;
-    @include flex-prop;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    background-color: $color_light_gray; // @include flex-prop; // flex-direction: column; // justify-content: center; // align-items: center;
     @include tablets {
       grid-column: 1 / 3;
       grid-row: 2 / 3;
@@ -32,7 +30,21 @@
     @include phones {
       grid-column: 1 / 3;
       grid-row: 2 / 3;
-    }    
+    }
+    .slider__desription-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    .slider__description-item {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      @include flex-prop;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
   }
   &__title {
     width: 70%;
@@ -53,7 +65,7 @@
       font-size: 30px;
       padding-bottom: 1rem;
       font-size: rem(21px);
-    }    
+    }
     &:after {
       content: ' ';
       position: absolute;
@@ -67,7 +79,7 @@
       }
       @include phones {
         width: 12%;
-      }      
+      }
     }
   }
   &__text {
@@ -80,8 +92,8 @@
     }
     @include phones {
       margin-top: 1rem;
-      font-size: rem(14px);      
-    }    
+      font-size: rem(14px);
+    }
   }
   &__link {
     margin-top: 4rem;
@@ -92,14 +104,14 @@
     @include phones {
       margin-top: 2rem;
       margin-bottom: 1rem;
-    }    
+    }
   }
-  &__current {
+  .slider__current {
+    position: relative;
+    overflow: hidden;
     width: 100%;
     grid-column: 2 / 4;
     grid-row: 1 / 2;
-    display: flex;
-    align-items: center;
     @include tablets {
       grid-column: 1 / 3;
       grid-row: 1 / 2;
@@ -109,19 +121,54 @@
       grid-column: 1 / 3;
       grid-row: 1 / 2;
       background-color: #e1e4d7;
-    }    
+    }
+    .slider__current-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    .slider__current-item {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
   }
   &__preview {
-    width: 80%;
+    // width: 80%;
+    width: 90%;
+    height: 90%;
     margin: 0 auto;
   }
-  &__button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .slider__button {
+    overflow: hidden;
     position: relative;
     width: 100%;
     height: 100%;
+    .slider__button-next-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    .slider__button-next-item {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .slider__button-prev-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    .slider__button-prev-item {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
     &--prev {
       grid-column: 2 / 3;
       grid-row: 2 / 3;
@@ -138,7 +185,7 @@
       @include phones {
         grid-column: 1 / 2;
         grid-row: 3 / 4;
-      }      
+      }
     }
     &--next {
       grid-column: 3 / 4;
@@ -156,7 +203,7 @@
       @include phones {
         grid-column: 2 / 3;
         grid-row: 3 / 4;
-      }      
+      }
     }
   }
   &__svg {
