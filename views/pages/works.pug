@@ -59,7 +59,7 @@ block content
                 use(xlink:href='images/icons/sprite.svg#works_header')             
             h2.section__header.section__header--color_black Мои работы    
         .works__slider
-            .slider
+            .slider#slider
                 .slider__description
                     ul.slider__desription-wrapper
                         if (slides)        
@@ -72,23 +72,25 @@ block content
                     ul.slider__current-wrapper
                         if (slides)        
                             each slide, index in slides                        
-                                li.slider__current-item                
+                                li.slider__current-item
                                     .slider__preview
                                         img(src=`${slide.picture}` alt="slide_big" class="slider__current-img")
                 a.slider__button.slider__button--prev
                     ul.slider__button-prev-wrapper
                         if (slides)        
                             each slide, index in slides                       
-                                li.slider__button-prev-item                  
-                                    img(src=`${slide.picture}` alt="slider_small" class="slider__button-img")
+                                li.slider__button-prev-item     
+                                    .slider__small-pic             
+                                        img(src=`${slide.picture}` alt="slider_small" class="slider__button-img")
                     svg(class='slider__svg')
                         use(xlink:href='images/icons/sprite.svg#portf_arrow_down')                          
                 a.slider__button.slider__button--next
                     ul.slider__button-next-wrapper
                         if (slides)        
                             each slide, index in slides                       
-                                li.slider__button-next-item                     
-                                    img(src=`${slide.picture}` alt="slider_small" class="slider__button-img") 
+                                li.slider__button-next-item    
+                                    .slider__small-pic                                                 
+                                        img(src=`${slide.picture}` alt="slider_small" class="slider__button-img") 
                     svg(class='slider__svg')
                         use(xlink:href='images/icons/sprite.svg#portf_arrow_up')                
     section.section.reviews    
