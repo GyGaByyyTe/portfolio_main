@@ -2,4 +2,7 @@ node_modules
 .vscode
 .idea
 build
-public
+public/fonts/
+public/images/
+public/scripts/
+public/styles/
