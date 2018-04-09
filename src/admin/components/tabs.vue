@@ -4,8 +4,8 @@
       li.item(
         v-for="(tab, index) in tabs"
         :class="{'item--active' : tab.active}")
-        router-link(:to="tab.href").link 
-          span(v-on:click="changeTab(index)") {{tab.name}}
+        router-link(:to="tab.href").link {{tab.name}}
+          span(v-on:click="changeTab(index)") 
 </template>
 <script>
 export default {
@@ -13,7 +13,7 @@ export default {
     return {
       prevTab: 0,
       tabs: [
-        { name: 'Таб 1', href: '/', active: true },
+        { name: 'Таб 1', href: '/admin', active: true },
         { name: 'Таб 2', href: '/blog', active: false },
         { name: 'Таб 3', href: '/works', active: false }
       ]

@@ -12,6 +12,7 @@
         .work-upload     
           label
               input(:photo="photo" class="works-open" type="file" accept="image/*" @change="fileChange($event.target.files)" ref="upload")
+              img(src="/images/userfiles/upload.png")			  
               span Загрузить картинку          
       input(class="works-save" type="submit" value="Добавить")  
 </template>
@@ -92,12 +93,21 @@ export default {
   &:hover {
     cursor: pointer;
   }
-}
-.work-upload input[type='file'] {
-  display: none;
-}
-.work-upload label {
-  display: block;
-  cursor: pointer;
+
+  input[type='file'] {
+    display: none;
+  }
+  label {
+    display: block;
+    cursor: pointer;
+  }
+  img {
+    width: 35px;
+    height: 35px;
+    vertical-align: middle;
+  }
+  span {
+    margin-left: 1rem;
+  }
 }
 </style>

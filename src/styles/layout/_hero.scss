@@ -26,7 +26,7 @@
 .hero__top-left {
   padding-top: 1.7rem;
   padding-left: 2rem;
-  width: 50%; 
+  width: 50%;
   @include phones {
     padding-top: 1rem;
     padding-left: 0.4rem;
@@ -34,7 +34,7 @@
 }
 .hero__top-right {
   position: relative;
-  z-index: 2;
+  z-index: 200;
   padding-top: 0.5rem;
   padding-right: 1.8rem;
   width: 50%;
@@ -54,6 +54,7 @@
 
   &--blog {
     width: initial;
+    margin: auto;
   }
 }
 
@@ -70,6 +71,9 @@
 }
 .hero__button {
   margin-bottom: 4.3rem;
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
 }
 .hero__button-svg {
   fill: $color_white;

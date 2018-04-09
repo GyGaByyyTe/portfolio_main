@@ -24,6 +24,14 @@ module.exports.login = function(req, res) {
 };
 
 module.exports.auth = function(req, res, next) {
+  if (req.body.isHuman != 'on') {
+    req.flash('message', ' Вы не подвердили, что вы человек!');
+    return res.redirect('/');
+  }
+  if (req.body.isRealHuman != 'yes') {
+    req.flash('message', ' Вы человек, но не уверены в этом');
+    return res.redirect('/');
+  }  
   passport.authenticate('loginUsers', (err, user) => {
     if (err) {
       return next(err);

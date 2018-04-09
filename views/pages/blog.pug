@@ -46,7 +46,7 @@ block content
                     h2.section__header Блог
                 .hero__info Статьи, которые я написал  
 
-    section.section.blog
+    section.section.blog.js-second-section
         .section__overlay
             <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1000 85" preserveaspectratio="none" class="traingle">
                 <polygon class = "section__overlay-left" points="0,0   0,86   500.8,86   500.8,75.5"></polygon>
@@ -54,12 +54,12 @@ block content
             </svg>       
         aside.blog__aside#blog__aside
             .blog__dummy
+            .blog__aside-open 			
             ul.blog__aside-list#blog__aside-list      
               if (articles)                      
                 each item, index in articles
                     li(id=`${index}`).blog__aside-item
                         a(href=`#a${index}` class='blog__aside-link')= item.title 
-            .blog__aside-open
         main.blog__main
             ul.blog_article-list
               if (articles)             
