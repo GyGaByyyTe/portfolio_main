@@ -47,7 +47,7 @@ app.use(
 //    'Origin, X-Requested-With, Content-Type, Accept'
 //  );
 //  next();
-//});
+});
 
 require('./config/config-passport');
 app.use(passport.initialize());

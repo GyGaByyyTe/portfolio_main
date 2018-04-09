@@ -32,7 +32,7 @@ export default {
       formData.append('photo', this.photo, this.photo.name);
       formData.append('tech', this.tech);
       formData.append('name', this.name);
-      this.axios.post('http://localhost:3000/admin/work', formData).then(rs => {
+      this.axios.post('http://188.225.26.122:3000/admin/work', formData).then(rs => {
         this.msgfile = rs.data.msg;
         if (rs.data.status === 'Ok') {
           this.name = '';

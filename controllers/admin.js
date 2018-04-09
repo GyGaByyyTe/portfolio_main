@@ -44,14 +44,16 @@ module.exports.uploadWork = function(req, res) {
         fs.rename(files.photo.path, fileName);
       }
       const pathApi = config.server.work;
-      let dir = fileName.substr(fileName.indexOf('\\'));
+//      console.log(fileName);
+      let dir = fileName.substr(fileName.lastIndexOf('/')+1);
+//      console.log(dir);
       const requestOptions = {
         url: apiServer + pathApi,
         method: 'POST',
         json: {
           name: fields.name,
           tech: fields.tech,
-          picture: dir
+          picture: "\\upload\\"+dir
         },
         headers: {
           secure: config.server.secure

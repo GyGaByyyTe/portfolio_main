@@ -32,7 +32,7 @@ const skills = {
   },
   actions: {
     fetchSkills({ state }) {
-      axios.get('http://localhost:3000/api/about').then(rs => {
+      axios.get('http://188.225.26.122:3000/api/about').then(rs => {
         state.data = rs.data.skills;
         // console.log('fetchSkills about ' + state);
       });
@@ -42,7 +42,7 @@ const skills = {
       // console.log(data);
       axios({
         method: 'post',
-        url: 'http://localhost:3000/api/about',
+        url: 'http://188.225.26.122:3000/api/about',
         data: data
       }).then(rs => {
         state.msgSkills = rs.data.status;

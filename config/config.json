@@ -1,6 +1,6 @@
 {
   "server": {
-    "path": "http://localhost:3000",
+    "path": "http://188.225.26.122:3000",
     "blog": "/api/blog",
     "avatar": "/api/avatar",
     "about": "/api/about",

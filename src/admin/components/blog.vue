@@ -30,7 +30,7 @@ export default {
     sendArticle: function() {
       this.axios({
         method: 'post',
-        url: 'http://localhost:3000/api/blog',
+        url: 'http://188.225.26.122:3000/api/blog',
         data: {
           title: this.title,
           date: this.date,
