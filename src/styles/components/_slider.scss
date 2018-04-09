@@ -144,7 +144,9 @@
     }
   }
   &__preview {
-    // width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 90%;
     height: 90%;
     margin: 0 auto;
@@ -246,6 +248,9 @@
     }
   }
   .slider__small-pic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 90%;
     height: 90%;
     margin: 0 auto;
