@@ -29,7 +29,8 @@
   color: $color_white;
 
   @include phones {
-    min-height: 100vh;
+    height: 100vh;
+    min-height: 510px;
   }
 
   &:before {

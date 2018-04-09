@@ -1,19 +1,19 @@
 .form {
-  position: relative;
+  z-index: 2;
   overflow: hidden;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-radius: 5px;
 
   &::before {
     content: '';
     width: 100%;
     height: 100%;
-    background: inherit;
+    background-image: url(../images/backgrounds/back_reviews.png);
+    background-size: cover;
     position: absolute;
     left: 0;
     top: 0;
-    box-shadow: inset 0 0 0 200px rgba(255, 255, 255, 0.3);
-    filter: blur(10px);
+    box-shadow: inset 0 0 0 1800px rgba(255, 255, 255, 0.4);
+    filter: blur(3px);
   }
 
   &--index {
@@ -96,6 +96,18 @@
 
   &__buttons {
     font-size: 0;
+    position: relative;
+    &:after {
+      content: ' ';
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      right: 50%;
+      width: 2px;
+      height: 100%;
+      background-color: #dee3e7;
+      opacity: 0.5;
+    }
   }
 
   &__button {
@@ -111,28 +123,16 @@
     overflow: hidden;
     border: none;
 
-    &:first-child {
-      border-bottom-left-radius: 5px;
-    }
-    &:last-child {
-      border-bottom-right-radius: 5px;
-    }
-
     &:after {
       content: ' ';
-      position: absolute;
+      position: relative;
+      z-index: 5;
       top: 0;
       right: 0;
       width: 2px;
       height: 100%;
       background-color: #dee3e7;
       opacity: 0.5;
-    }
-
-    &:last-child {
-      &:after {
-        display: none;
-      }
     }
   }
 }

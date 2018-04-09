@@ -8,7 +8,7 @@ import Works from './components/works.vue'
 
 const routes = [
   {
-    path: '/',
+    path: '/admin',
     component: About
   },
   {

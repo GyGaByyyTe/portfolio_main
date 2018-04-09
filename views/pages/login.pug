@@ -51,18 +51,18 @@ block content
                             input(type='password' name='password' class='form__input' required)  
                         .form__row
                             label.form__custom-checkbox
-                                input(class="form__custom-checkbox-real" type="checkbox" name="dont-disturb")
+                                input(class="form__custom-checkbox-real" type="checkbox" name="isHuman")
                                 span.form__checkbox-custom
                                 span.form__block-title Я человек                     
                         .form__row          
                             label.form__label Вы точно не робот?                                         
                     .form__custom-radio
                         label.form__custom-radiobutton
-                            input(class="form__custom-radio-real" type="radio" name="is-human" value="yes")
+                            input(class="form__custom-radio-real" type="radio" name="isRealHuman" value="yes")
                             span.form__radio-custom
                             span.form__block-title Да
                         label.form__custom-radiobutton
-                            input(class="form__custom-radio-real" type="radio" name="is-human" value="nocash")
+                            input(class="form__custom-radio-real" type="radio" name="isRealHuman" value="no")
                             span.form__radio-custom
                             span.form__block-title Не уверен
 

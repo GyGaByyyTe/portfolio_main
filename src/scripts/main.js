@@ -34,7 +34,10 @@ if (document.getElementsByClassName('slider__current-item').length > 1) {
   sliderInit();
 }
 
-
+//плавный скролл на 100vh вниз
+$(".hero__button").on('click',function(event) {
+  $('body,html').animate({ scrollTop: window.innerHeight }, 'slow');
+});
 
 // menu overlay
 var sliderOverlay = $('#nav');

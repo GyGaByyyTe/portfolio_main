@@ -48,7 +48,7 @@ block content
             svg(class='hero__button-svg')
                 use(xlink:href='images/icons/sprite.svg#arrow_down')   
 
-    section.section.works       
+    section.section.works.js-second-section       
         .section__overlay
             <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1000 85" preserveaspectratio="none" class="traingle">
                 <polygon class = "section__overlay-left" points="0,0   0,86   500.8,86   500.8,75.5"></polygon>
@@ -93,7 +93,8 @@ block content
                                         img(src=`${slide.picture}` alt="slider_small" class="slider__button-img") 
                     svg(class='slider__svg')
                         use(xlink:href='images/icons/sprite.svg#portf_arrow_up')                
-    section.section.reviews    
+    section.section.reviews   
+        .reviews__background 
         .reviews__header
             svg(class='transparent__svg-bg transparent__svg-bg--about')
                 use(xlink:href='images/icons/sprite.svg#about_header')           

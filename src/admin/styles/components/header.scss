@@ -3,12 +3,22 @@
   justify-content: space-between;
   padding: 20px;
   background: $green;
-  align-items:  center;
+  align-items: center;
   color: #fff;
+
+  @include tablets {
+    display: flex;
+    text-align: center;
+    flex-direction: column-reverse;
+
+    & h1 {
+      font-size: 21px;
+    }
+  }
 
   a {
     color: inherit;
     opacity: 0.7;
-    text-decoration: underline;    
+    text-decoration: underline;
   }
 }
